@@ -1,6 +1,6 @@
 {
-    "name": "video_player_example",
-    "short_name": "video_player_example",
+    "name": "flutter_blog_web",
+    "short_name": "flutter_blog_web",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
