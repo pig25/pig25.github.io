@@ -1,0 +1,44 @@
+{
+	"WONO": "WO2208000001",
+	"ITEMID": "TEST1234",
+	"ITEMNAME": "TEST1234",
+	"STARTQTY": 2,
+	"ENDQTY": 1,
+	"WOCHILD": [
+		{
+			"SEQ": "0010",
+			"ITEMID": "TEST1234-01",
+			"ITEMNAME": "TEST1234-01",
+			"NEEDQTY": 5,
+			"RECEIVEQTY": 0
+		},
+		{
+			"SEQ": "0020",
+			"ITEMID": "TEST1234-02",
+			"ITEMNAME": "TEST1234-02",
+			"NEEDQTY": 5,
+			"RECEIVEQTY": 0
+		},
+		{
+			"SEQ": "0030",
+			"ITEMID": "TEST1234-03",
+			"ITEMNAME": "TEST1234-03",
+			"NEEDQTY": 6,
+			"RECEIVEQTY": 0
+		},
+		{
+			"SEQ": "0040",
+			"ITEMID": "TEST1234-04",
+			"ITEMNAME": "TEST1234-04",
+			"NEEDQTY": 7,
+			"RECEIVEQTY": 0
+		},
+		{
+			"SEQ": "0050",
+			"ITEMID": "TEST1234-05",
+			"ITEMNAME": "TEST1234-05",
+			"NEEDQTY": 9,
+			"RECEIVEQTY": 0
+		}
+	]
+}
