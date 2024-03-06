@@ -37,8 +37,8 @@ body {
 <body>
 	<!--播放相機畫面但隱藏用canvas顯示<video  id="myVideo"  style="display: none"></video>-->
 	<video  id="myVideo" ></video
-	<!--canvas顯相機畫面-->
-	<canvas id="videoCanvas"></canvas>
+	<!--canvas顯相機畫面<canvas id="videoCanvas"></canvas>-->
+	
 	<!--顯示訊息與掃出條碼的點-->
 	<div class="content">
 		<p>訊息:<span id="message" style="color:red;font-weight:bold"></span></p>
@@ -81,6 +81,7 @@ if (!("BarcodeDetector" in globalThis)) {
 		console.error(`${err.name}: ${err.message}`);
 		document.getElementById('message').innerHTML=`${err.name}: ${err.message}`;
 	  });
+	/*
 	//顯示相機畫面
 function drawImge(){
     var ctx = videocanvas.getContext('2d');
@@ -114,6 +115,7 @@ function drawImge(){
     //100毫秒後再執行一次drawImge，相當於1秒檢測10次
     setTimeout(drawImge , 100);
 }
+	*/
 }
 
 </script>
