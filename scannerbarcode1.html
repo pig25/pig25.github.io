@@ -84,8 +84,8 @@ if (!("BarcodeDetector" in globalThis)) {
 	//顯示相機畫面
 function drawImge(){
     var ctx = videocanvas.getContext('2d');
-    videocanvas.width = myvideo.videoWidth;
-    videocanvas.height = myvideo.videoHeight;
+//    videocanvas.width = myvideo.videoWidth;
+ //   videocanvas.height = myvideo.videoHeight;
     ctx.drawImage(myvideo, 0, 0, videocanvas.width, videocanvas.height);
 	//掃描條碼
 	barcodeDetector
