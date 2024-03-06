@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+
+</style>
+</head>
+<body>
+	<!--播放相機畫面但隱藏用canvas顯示<video  id="myVideo"  style="display: none"></video>-->
+	<video  id="myVideo" ></video>
+	<!--canvas顯相機畫面<canvas id="videoCanvas"></canvas>-->
+	
+	<!--顯示訊息與掃出條碼的點-->
+	<div class="content">
+		<p>訊息:<span id="message" style="color:red;font-weight:bold"></span></p>
+		<p>點:<span id="cornerPoints" style="color:red;font-weight:bold"></span></p>
+	</div>
+<script>
+
+// 檢查瀏覽器相容性
+if (!("BarcodeDetector" in globalThis)) {
+	console.log("此瀏覽器不支援條碼掃描。");
+	document.getElementById('message').innerHTML='此瀏覽器不支援條碼掃描';
+} else {
+	console.log("此瀏覽器支援條碼掃描");
+	document.getElementById('message').innerHTML='此瀏覽器支援條碼掃描';
+	// 建立條碼種類
+	const barcodeDetector = new BarcodeDetector({
+		formats: ["code_128","qr_code"],
+	});
+	//相機與麥克風參數
+	const constraints = {
+	  audio: false,
+	  video: {facingMode:  "environment" ,frameRate: { min: 10, max: 10 } },
+	};
+	const myvideo = document.getElementById('myVideo');
+	const videocanvas = document.getElementById('videoCanvas');
+	//詢問使用者開啟相機權限並播放相機畫面
+	navigator.mediaDevices
+	  .getUserMedia(constraints)
+	  .then((mediaStream) => {
+		myvideo.srcObject = mediaStream;
+		myvideo.onloadedmetadata = () => {
+		  //播放
+		  myvideo.play();
+		  //顯示相機畫面
+		  //drawImge();
+		};
+	  })
+	  .catch((err) => {
+		//顯示錯誤訊息
+		console.error(`${err.name}: ${err.message}`);
+		document.getElementById('message').innerHTML=`${err.name}: ${err.message}`;
+	  });
+	/*
+	//顯示相機畫面
+function drawImge(){
+    var ctx = videocanvas.getContext('2d');
+    videocanvas.width = myvideo.videoWidth;
+    videocanvas.height = myvideo.videoHeight;
+    ctx.drawImage(myvideo, 0, 0, videocanvas.width, videocanvas.height);
+	//掃描條碼
+	barcodeDetector
+	  .detect(myvideo)
+	  .then((barcodes) => {
+	    var cornerPoints = '';
+	    var result = ''; 
+		var ctx = videocanvas.getContext('2d');
+		barcodes.forEach((barcode)  => {
+			console.log(barcode.rawValue);
+			//條碼結果
+			 result += ` ${barcode.rawValue}, `;
+			 cornerPoints += ` [${barcode.boundingBox.x}, ${barcode.boundingBox.y},${barcode.boundingBox.width},${barcode.boundingBox.height}], `;
+			  //畫出條碼的邊框
+			  ctx.rect(barcode.boundingBox.x,barcode.boundingBox.y,barcode.boundingBox.width,barcode.boundingBox.height);
+			  ctx.lineWidth = "5";
+			  ctx.strokeStyle = "red";    
+			  ctx.stroke();
+		});
+		document.getElementById('message').innerHTML= `條碼:${result} `;
+		document.getElementById('cornerPoints').innerHTML= cornerPoints;
+	  })
+	  .catch((err) => {
+		console.log(err);
+	  });
+    //100毫秒後再執行一次drawImge，相當於1秒檢測10次
+    setTimeout(drawImge , 100);
+}
+	*/
+}
+
+</script>
+</body>
+</html>
