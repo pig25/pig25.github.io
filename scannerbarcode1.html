@@ -14,7 +14,7 @@ body {
   font-size: 17px;
 }
 
-#videoCanvas {
+#myVideo {
   position: fixed;
   right: 0;
   bottom: 0;
@@ -35,8 +35,8 @@ body {
 </style>
 </head>
 <body>
-	<!--播放相機畫面但隱藏用canvas顯示-->
-	<video  id="myVideo"  style="display: none"></video>
+	<!--播放相機畫面但隱藏用canvas顯示<video  id="myVideo"  style="display: none"></video>-->
+	<video  id="myVideo" ></video
 	<!--canvas顯相機畫面-->
 	<canvas id="videoCanvas"></canvas>
 	<!--顯示訊息與掃出條碼的點-->
@@ -73,7 +73,7 @@ if (!("BarcodeDetector" in globalThis)) {
 		  //播放
 		  myvideo.play();
 		  //顯示相機畫面
-		  drawImge();
+		  //drawImge();
 		};
 	  })
 	  .catch((err) => {
