@@ -45,6 +45,8 @@ body {
 		<p>點:<span id="cornerPoints" style="color:red;font-weight:bold"></span></p>
 	</div>
 <script>
+	const myvideo = document.getElementById('myVideo');
+	const videocanvas = document.getElementById('videoCanvas');
 // 檢查瀏覽器相容性
 if (!("BarcodeDetector" in globalThis)) {
 	console.log("此瀏覽器不支援條碼掃描。");
@@ -61,8 +63,7 @@ if (!("BarcodeDetector" in globalThis)) {
 	  audio: false,
 	  video: {facingMode:  "environment" ,frameRate: { min: 10, max: 10 } },
 	};
-	const myvideo = document.getElementById('myVideo');
-	const videocanvas = document.getElementById('videoCanvas');
+
 	//詢問使用者開啟相機權限並播放相機畫面
 	navigator.mediaDevices
 	  .getUserMedia(constraints)
