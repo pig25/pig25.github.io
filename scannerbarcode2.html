@@ -239,9 +239,9 @@ cornerPoints += `,[${myvideo.offsetWidth},${myvideo.offsetHeight}],[${myvideo.vi
         const stream = myvideo.srcObject;
         if (stream != null) {
           const tracks = stream.getTracks();
-
-          track.applyConstraints({
-            advanced: [{torch: true}]
+          var capabilities = tracks.getCapabilities();
+          tracks.applyConstraints({
+            advanced: [{torch: !capabilities["torch"]}]
           });
 
 
