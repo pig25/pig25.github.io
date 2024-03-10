@@ -32,6 +32,8 @@
       padding: 20px;
     }
   </style>
+  
+
 </head>
 
 <body>
@@ -41,13 +43,13 @@
   <div class="content">
     <p>訊息:<span id="message" style="color:red;font-weight:bold"></span></p>
     <p>點:<span id="cornerPoints" style="color:red;font-weight:bold"></span></p>
-    <p>設備:<select id="mediaDevices" onchange="mediaDevices_onchange()"></select>
-    <p>
+    <p>設備:<select id="mediaDevices" onchange="mediaDevices_onchange()"></select> <button class="switch">手電筒</button><p>
   </div>
 
   <script>
    const mycanvas = document.getElementById('myCanvas');
     const myvideo = document.getElementById('myVideo');
+	 const btn = document.querySelector('.switch');
 	screen_orientation();
     //document.getElementById('cornerPoints').innerHTML = `畫面放大縮小比例:[${window.visualViewport.scale}],畫面顯示大小:[${myvideo.width},${myvideo.height}],螢幕方向: ${screen.orientation.type}, 旋轉角度:${screen.orientation.angle}`;
    
@@ -156,7 +158,9 @@ cornerPoints += `,[${myvideo.offsetWidth},${myvideo.offsetHeight}],[${myvideo.vi
     function openCameraSuccess(mediaStream) {
 
       myvideo.srcObject = mediaStream;
-
+      //let there be light!
+        const btn = document.querySelector('.switch');
+      
     }
     //開啟相機失敗
     function openCameraError(err) {
@@ -228,7 +232,28 @@ cornerPoints += `,[${myvideo.offsetWidth},${myvideo.offsetHeight}],[${myvideo.vi
 	 
       openCamera();
         });
-  </script>
+ //監聽按鈕手電筒
+ btn.addEventListener('click', function(){
+ try {
+   
+        const stream = myvideo.srcObject;
+        if (stream != null) {
+          const tracks = stream.getTracks();
+
+          track.applyConstraints({
+            advanced: [{torch: true}]
+          });
+
+
+        }
+
+      } catch (err) {
+        console.log(err);
+        alert(err);
+      }
+   
+        }); 
+		</script>
 </body>
 
 </html>
