@@ -238,13 +238,21 @@ cornerPoints += `,[${myvideo.offsetWidth},${myvideo.offsetHeight}],[${myvideo.vi
    
         const stream = myvideo.srcObject;
         if (stream != null) {
+		const track = stream.getVideoTracks()[0];
+		var capabilities = track.getCapabilities();
+		alert(track.getSettings());
+		 track.applyConstraints({
+            advanced: [{torch: true}]
+          });
+		 
+		/*
           const tracks = stream.getTracks();
 		  tracks.forEach((track) => {
             track.applyConstraints({
             advanced: [{torch: true}]
           });
           });
-          
+          */
 
         }
 
