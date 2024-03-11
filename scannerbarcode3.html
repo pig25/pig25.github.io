@@ -355,7 +355,7 @@
     });
       //當使用者移動焦距
     focal.addEventListener("input", (event) => {
-      showscannerhvalue(false);
+      setapplyConstraints(false);
      focalvalue.innerHTML = focal.value;
     });
     //監聽影片元件有資料進入就撥放，
@@ -385,10 +385,10 @@
     });
     //監聽按鈕手電筒，如果手機有多顆鏡頭不會每個鏡頭都能開手電筒
     btn.addEventListener('click', function () {
-    showscannerhvalue(true);
+    setapplyConstraints(true);
     }); 
     //設定鏡頭參數
-    function showscannerhvalue(light) {
+    function setapplyConstraints(light) {
      try {
         const stream = myvideo.srcObject;
         if (stream != null) {
