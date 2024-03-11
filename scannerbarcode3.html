@@ -77,6 +77,7 @@
     <p>點:<span id="cornerPoints" style="color:red;font-weight:bold"></span></p>
   </div>
   <script>
+    var torch = false;
     const scannerw = document.getElementById("scannerW");
     const scannerwvalue = document.getElementById("scannerWvalue");
     //顯示掃描區域寬度數值
@@ -177,6 +178,7 @@
     }
     //切換相機
     function mediaDevices_onchange() {
+      torch = false;
       localStorage.setItem("CameraId", document.getElementById("mediaDevices").value);
       openCamera();
     }
@@ -358,8 +360,9 @@
         const stream = myvideo.srcObject;
         if (stream != null) {
           const track = stream.getVideoTracks()[0];
+          torch = !torch;
           track.applyConstraints({
-            advanced: [{ torch: true }]
+            advanced: [{ torch: torch }]
           });
         }
       } catch (err) {
